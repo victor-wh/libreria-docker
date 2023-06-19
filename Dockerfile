@@ -7,5 +7,8 @@ RUN apt-get update && \
 
 # Instalar Django
 RUN pip3 install Django==3.2
-#COPY . /code
+
 WORKDIR /code
+
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
